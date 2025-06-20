@@ -1,6 +1,8 @@
 import React,{ useEffect, useState} from "react";
 import ProductList from "../componets/ProductList";
+import Cart from "../componets/Cart";
 import { fetchAllProducts } from "../services/productService";
+
 
 const Home =()=>{
     const [products, setProducts] = useState([]);
@@ -20,9 +22,11 @@ useEffect(()=>{
 
 return(
     <div>
-        <h1> All Products</h1>
+        <Cart/>
+        <h1> All Products ({products.length})</h1>
         <ProductList products={products}/>
     </div>
     );
 };
 
+export default Home;
