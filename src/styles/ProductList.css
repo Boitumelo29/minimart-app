@@ -1,0 +1,27 @@
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px;
+}
+
+.product-card img{
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+}
+
+.product-card h4 {
+font-size: 16px;
+margin: 10px 0 5px;
+}
+
+.product-card p {
+    font-weight: bold;
+}
