@@ -22,7 +22,7 @@ useEffect(()=>{
 
 return(
     <div>
-        <Cart/>
+    
         <h1> All Products ({products.length})</h1>
         <ProductList products={products}/>
     </div>
