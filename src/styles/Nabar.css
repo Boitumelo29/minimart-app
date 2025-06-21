@@ -1,0 +1,36 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #282c34;
+    color: white;
+  }
+  
+  .logo {
+    font-size: 20px;
+  }
+  
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .login-icon {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logout-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
