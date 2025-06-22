@@ -3,7 +3,7 @@ import { AuthContext } from "../context/AuthContext";
 import '../styles/LoginPopUp.css'
 
 const LoginPopup = ({ close }) => {
-    const { login } = useContext(AuthContext);
+    const { login, signUpUser } = useContext(AuthContext);
     const [isLoginView, setLoginView] = useState(true);
     const [form, setForm] = useState({ username: '', password: '' });
     const [error, setError] = useState('');
@@ -18,7 +18,7 @@ const LoginPopup = ({ close }) => {
       setError('');
 
       try {
-        await login(form.username, form.password);
+        isLoginView ? await login(form.email, form.password) : await signUpUser(form.username,form.email, form.password);
         close();
       } catch (err) {
         alert('Login failed');
@@ -38,8 +38,8 @@ const LoginPopup = ({ close }) => {
         </form>
         <div className="auth-toggle">
           {
-            isLoginView? (<p>Don't have an account? <span>Sign Up</span></p>):
-            ( <p>Already have an account? <span>Login</span></p>)
+            isLoginView? (<p>Don't have an account? <span onClick={() => setLoginView(false)}>Sign Up</span></p>):
+            ( <p>Already have an account? <span onClick={() => setLoginView(true)}>Login</span></p>)
           }
         </div>
       </div>
