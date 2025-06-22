@@ -1,6 +1,5 @@
 import { supabase } from "../lib/supabaseClient";
 
-const BASE_URL = 'https://fakestoreapi.com';
 
 export const signIn = async (email, password) => {
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -8,7 +7,7 @@ export const signIn = async (email, password) => {
     password: password.trim()
   });
 
-  // if (error !== null) return data;
+  if (error) throw error;
   
   return data;
 };
@@ -24,9 +23,9 @@ export const signUp = async (email, password, username) => {
     }
   });
 
-  if (error !== null) return data;
+  if (error) throw error;
 
-  return error;
+  return data;
 }
 
 export const signOut = async () => {
@@ -34,4 +33,17 @@ export const signOut = async () => {
 
   if (error) return error;
 
+}
+
+export const getSession = async () => {
+  const { data, error } = await supabase.auth.getSession()
+  if (error) throw error;
+  return data.session;
+}
+
+export const onAuthChange = (callback) => {
+  const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    callback(session);
+  })
+  return subscription;
 }
