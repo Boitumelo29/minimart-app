@@ -1,8 +1,6 @@
 import React,{ useEffect, useState} from "react";
 import ProductList from "../componets/ProductList";
-import Cart from "../componets/Cart";
 import { fetchAllProducts } from "../services/productService";
-
 
 const Home =()=>{
     const [products, setProducts] = useState([]);
@@ -21,11 +19,10 @@ useEffect(()=>{
 []);
 
 return(
-    <div>
-    
+    <main>
         <h1> All Products ({products.length})</h1>
         <ProductList products={products}/>
-    </div>
+    </main>
     );
 };
 
