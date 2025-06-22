@@ -1,21 +1,37 @@
+import { supabase } from "../lib/supabaseClient";
+
 const BASE_URL = 'https://fakestoreapi.com';
 
-export const loginUser = async (username, password) => {
-    const response = await fetch('https://fakestoreapi.com/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+export const signIn = async (email, password) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email.trim(),
+    password: password.trim()
+  });
+
+  // if (error !== null) return data;
   
-    if (!response.ok) {
-        console.error(response);
-      throw new Error('Login failed');
-     
+  return data;
+};
+
+export const signUp = async (email, password, username) => {
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password,
+    options: {
+      data: {
+        displayName: username
+      }
     }
-  
-    const data = await response.json();
-    return data.token;
-  };
-  
+  });
+
+  if (error !== null) return data;
+
+  return error;
+}
+
+export const signOut = async () => {
+  const { error } = await supabase.auth.signOut();
+
+  if (error) return error;
+
+}

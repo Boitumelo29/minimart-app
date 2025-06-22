@@ -1,32 +1,36 @@
 import React, { createContext, useState } from "react";
-import { loginUser } from "../services/authService";
+import { signIn, signUp, signOut } from "../services/authService";
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({children})=>{
+export const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState(null);
     const [username, setUsername] = useState(null);
 
-    const login = async (username, password)=>{
-        try{
-            const token = await loginUser(username,password);
-            setToken(token);
-            setUsername(username);
-        }catch(error){
+    const login = async (email, password) => {
+        try {
+            const data = await signIn(email, password);
+            setUsername(data?.user?.user_metadata?.displayName);
+        } catch (error) {
             console.error('Login failed:', error);
             throw error;
         }
     };
-    const logout = async ()=>{
-        setToken(null);
+    const logout = async () => {
+        await signOut();
         setUsername(null);
     };
 
+    const signUpUser = async (username, email, password) => {
+        const data = await signUp(email, password, username);
+        setUsername(data?.user?.user_metadata?.displayName);
+    }
 
-        return(
-            <AuthContext.Provider value={{token, username, login, logout}}>
-                {children}
-            </AuthContext.Provider>
-        );
+
+    return (
+        <AuthContext.Provider value={{ token, username, login, logout, signUpUser }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
