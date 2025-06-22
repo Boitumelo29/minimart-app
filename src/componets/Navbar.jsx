@@ -38,7 +38,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="login-icon-wrapper" ref={popupRef}>
-            <span className="login-icon" onClick={() => setShowPopup(!showPopup)}>👤</span>
+            <span className="login-icon" onClick={() => setShowPopup(!showPopup)}>👤 {username}</span>
             {showPopup && <LoginPopup close={() => setShowPopup(false)} />}
           </div>
         )}
