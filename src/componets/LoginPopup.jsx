@@ -6,16 +6,14 @@ const LoginPopup = ({ close }) => {
     const { login, signUpUser } = useContext(AuthContext);
     const [isLoginView, setLoginView] = useState(true);
     const [form, setForm] = useState({ username: '', password: '' });
-    const [error, setError] = useState('');
+ 
   
     const handleChange = (e) => {
       setForm({ ...form, [e.target.name]: e.target.value });
-      setError('');
     }
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      setError('');
 
       try {
         isLoginView ? await login(form.email, form.password) : await signUpUser(form.username,form.email, form.password);

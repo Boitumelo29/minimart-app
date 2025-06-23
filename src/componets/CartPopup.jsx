@@ -18,6 +18,7 @@ const CartPopup =({close}) => {
          <div className="cart-item-details">
          <strong className="cart-item-title">{product.title}</strong>
          <span className="cart-item-qty">Qty: {product.quantity}</span>
+         <p>R{product.price * product.quantity }</p>
          </div>
          <button className="remove-btn" onClick={() => removeFromCart(product.id)}>
               🗑️
