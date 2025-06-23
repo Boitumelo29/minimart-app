@@ -1,0 +1,74 @@
+.checkout-container {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+  }
+  
+  .checkout-form, .checkout-summary {
+    flex: 1;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  
+  .shipping-form .row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .shipping-form input,
+  .shipping-form textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+  }
+  
+  .shipping-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .cart-summary .cart-items {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .cart-summary .cart-items li {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .cart-summary .cart-items img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .discount {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .discount input {
+    flex: 1;
+    padding: 8px;
+  }
+  
+  .checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
