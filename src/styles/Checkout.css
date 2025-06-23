@@ -18,21 +18,14 @@
     margin-bottom: 15px;
   }
   
-  .shipping-form input,
-  .shipping-form textarea {
+  .shipping-form input{
     flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 6px;
   }
   
-  .shipping-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-  }
-  
+
   .cart-summary .cart-items {
     list-style: none;
     padding: 0;
@@ -51,24 +44,71 @@
     border-radius: 8px;
   }
   
-  .discount {
+
+  .payment-section {
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+  }
+  
+  .payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .payment-option img {
+    height: 24px;
+  }
+  
+  .card-form {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .card-form .row {
     display: flex;
     gap: 10px;
-    margin: 20px 0;
   }
-  
-  .discount input {
-    flex: 1;
-    padding: 8px;
+
+
+ .check-out{
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #282c34;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 300px;
+    transition: all 0.5s;
+    cursor: pointer;
+
   }
-  
-  .checkout-btn {
-    width: 100%;
-    padding: 12px;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
+
+.check-out span{
+    cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
   }
-  
+
+ .check-out span::after{
+    content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+  }
+
+  .check-out:hover span{
+    padding-right: 25px;
+  }
+  .check-out:hover span:after{
+    opacity: 1;
+    right: 0;
+  }
