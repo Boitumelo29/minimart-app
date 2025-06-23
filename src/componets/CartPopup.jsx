@@ -1,11 +1,24 @@
 import React, { useContext } from "react";
 import {CartContext} from '../context/CartContext';
 import '../styles/CartPopup.css'
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../context/AuthContext";
 
 
 const CartPopup =({close}) => {
     const {cartItems, removeFromCart} = useContext(CartContext);
     const totalItems = cartItems.reduce((a,b)=> a + b.quantity, 0);
+    const navigate = useNavigate();
+    const {user}= useContext(AuthContext);
+
+
+  const handleCheckout= () =>{
+    if(!user){
+        alert("Please Login or Signup to MiniMart")
+    }else{
+        navigate('/checkout');
+     }       
+    };
 
     return(
         <div className="cart-popup">
@@ -26,7 +39,7 @@ const CartPopup =({close}) => {
         </li>
      ))}
 </ul>
-            {cartItems && cartItems.length > 0 && (<button className="check-out"><span>Check Out</span></button>
+          {cartItems && cartItems.length > 0 && (<button onClick={handleCheckout} className="check-out"><span>Check Out</span></button>
 )}
         </div>
     );
