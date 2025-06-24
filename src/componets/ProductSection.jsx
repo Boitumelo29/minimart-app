@@ -13,27 +13,25 @@ const ProductSection = ()=>{
                 const selected = shuffled.slice(0, 3);
                 setRandomProducts(selected);
             } catch (error) {
-                console.error("Error fetching products:", error);
+                console.error("failed to get random products:", error);
             }
         };
-
         getProducts();
     }, []);
 
     return(
         <div className="product-content">
-             <section className="home" id="home">
+             <section>
                 <div className="product-section">
-                    <h2 className="section-title">Customer Favourites</h2>
+                    <h2>Customer Favourites</h2>
                     <div className="product-card-container">
                         {randomProducts.map(product => (
                             <div className="product-card" key={product.id}>
                                 <div className="badge">Customer Favourite</div>
                                 <img src={product.image} alt={product.title} />
                                 <h3>{product.title}</h3>
-                                <p>{product.description.slice(0, 60)}...</p>
-                                <p className="price">R{product.price}</p>
-                                <button className="add-btn"> Add to Cart   </button>
+                                <p>R{product.price}</p>
+                                <button className="add-btn"> Add to Cart</button>
                             </div>
                         ))}
                     </div>
