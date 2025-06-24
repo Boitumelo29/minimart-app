@@ -23,7 +23,7 @@ const CartPopup =({close}) => {
     return(
         <div className="cart-popup">
             <button className="close-btn" onClick={close}>X</button>
-            <h3>🛒 Cart ({totalItems})</h3>
+            <h3> <span className="material-icons">shopping_cart</span> Cart ({totalItems})</h3>
             <ul>
     {cartItems.map((product, idx) => (
       <li key={idx} className="cart-item">
