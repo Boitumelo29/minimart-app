@@ -1,9 +1,19 @@
 import React, {useEffect, useState} from "react";
 import { fetchAllProducts } from "../services/productService";
 import '../styles/ProductSection.css';
+import { useNavigate } from "react-router-dom";
 
-const ProductSection = ()=>{
+const ProductSection = () => {
     const [randomProducts, setRandomProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    const handleProduct = () => {
+        navigate(`/allProducts`);
+    };
+    const handleDetails= (productId)=>{
+        navigate(`/product/${productId}`);
+    };
 
     useEffect(() => {
         const getProducts = async () => {
@@ -15,28 +25,32 @@ const ProductSection = ()=>{
             } catch (error) {
                 console.error("failed to get random products:", error);
             }
+            finally{
+                setLoading(false);
+            }
         };
         getProducts();
     }, []);
 
-    return(
+    return (
         <div className="product-content">
-             <section>
-                <div className="product-section">
-                    <h2>Customer Favourites</h2>
-                    <div className="product-card-container">
-                        {randomProducts.map(product => (
-                            <div className="product-card" key={product.id}>
-                                <div className="badge">Customer Favourite</div>
-                                <img src={product.image} alt={product.title} />
-                                <h3>{product.title}</h3>
-                                <p>R{product.price}</p>
-                                <button className="add-btn"> Add to Cart</button>
-                            </div>
-                        ))}
-                    </div>
-                    <button className="btn"><span>View All Products</span></button>
-                </div>
+            <section>
+                {loading ? (<h1>Loading Customer Favourite</h1>) : (
+                    <div className="product-section">
+                        <h2>Customer Favourites</h2>
+                        <div className="product-card-container">
+                            {randomProducts.map(product => (
+                                <div className="product-card" key={product.id}>
+                                    <div className="badge">Customer Favourite</div>
+                                    <img onClick={() => handleDetails(product.id)} src={product.image} alt={product.title} />
+                                    <h3 onClick={() => handleDetails(product.id)}>{product.title}</h3>
+                                    <p>R{product.price}</p>
+                                    <button className="add-btn"> Add to Cart</button>
+                                </div>
+                            ))}
+                        </div>
+                        <button onClick={handleProduct} className="btn"><span>View All Products</span></button>
+                    </div>)}
             </section>
         </div>
     );
