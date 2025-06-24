@@ -1,4 +1,4 @@
-import React, {useContext, useState, useRef, useEffect} from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { CartContext } from "../context/CartContext";
 import CartPopup from "./CartPopup";
@@ -11,12 +11,17 @@ const Navbar = () => {
   const { username, logout } = useContext(AuthContext);
   const [showPopup, setShowPopup] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const {cartItems} = useContext(CartContext);
-  const totalItems = cartItems.reduce((a,b)=> a + b.quantity, 0);
+  const { cartItems } = useContext(CartContext);
+  const totalItems = cartItems.reduce((a, b) => a + b.quantity, 0);
   const popupRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname.split('/').filter(Boolean).map(path => path.charAt(0).toUpperCase() + path.slice(1)).join('') || '';
+
+
+  const handleProducts = () => {
+    navigate(`allProducts`);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -38,13 +43,13 @@ const Navbar = () => {
           </div>
           <div className="actions">
 
-            <span>View All Products </span>
+            <span onClick={handleProducts}>View All Products </span>
 
             <button onClick={() => setShowCart(!showCart)} className="icon-btn">
-                <span className="material-icons">shopping_cart</span>
-                {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
-              </button>
-              {showCart && <CartPopup close={() => setShowCart(false)} />}
+              <span className="material-icons">shopping_cart</span>
+              {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
+            </button>
+            {showCart && <CartPopup close={() => setShowCart(false)} />}
             {username ? (
               <div className="user-info">
                 <span>Welcome, {username}</span>
