@@ -26,7 +26,7 @@ const Navbar = () => {
       const timer = setTimeout(() => setShowToast(false), 3000);
       return () => clearTimeout(timer);
     }
-  }, [lastAddedItem?.time]); 
+  }, [lastAddedItem]); 
   
 
   const handleProducts = () => {
