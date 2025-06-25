@@ -7,7 +7,7 @@ export const CartContext = createContext();
 export const CartProvider = ({children})=>{
     const { username } = useContext(AuthContext);
     const [cartItems, setCartItems] = useState([]);
-
+    const [lastAddedItem, setLastAddedItem]= useState(null);
 
  
   useEffect(() => {
@@ -36,6 +36,7 @@ export const CartProvider = ({children})=>{
             return [...prevItems, { ...cleanProduct, quantity: 1 }];
           }
         });
+        setLastAddedItem({ title: product.title, time: Date.now() });
       };
 
       const removeFromCart = (productId) => {
@@ -48,7 +49,7 @@ export const CartProvider = ({children})=>{
       
 
     return(
-        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, lastAddedItem }}>
             {children}
         </CartContext.Provider>
     );
