@@ -57,9 +57,9 @@ const CartSummary = ({ isFormComplete, setFormData, }) => {
         </ul>
   
         <div className="summary-totals">
-          <p>Subtotal: R{subtotal}</p>
+          <p>Subtotal: R{subtotal.toFixed(2)}</p>
           <p>Shipping: R{shipping}</p>
-          <h4>Total: R{total}</h4>
+          <h4>Total: R{total.toFixed(2)}</h4>
         </div>
   
         {paymentSuccess ? (
