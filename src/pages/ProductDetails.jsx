@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchProduct } from '../services/productService'; // Adjust this path if needed
+import { fetchProduct } from '../services/productService'; 
 import { CartContext } from '../context/CartContext';
 import '../styles/ProductDetails.css';
 
@@ -23,17 +23,18 @@ const ProductDetails = () => {
   }, [id]);
 
   if (!product) return <p>Loading product...</p>;
-
   return (
-    <div className="product-details">
-      <img src={product.image} alt={product.title} />
-      <div className="info">
-        <h2>{product.title}</h2>
-        <p>{product.description}</p>
-        <h3>R{product.price}</h3>
-        <button onClick={() => addToCart(product)}>Add to Cart</button>
+    <div className="product-info-section">
+    <img className='main-image ' src={product.image} alt={product.title} />
+    <div className="info">
+      <h2 className="title">{product.title}</h2>
+      <p>{product.description}</p>
+      <div className="price-section">
+      <p className="price">R{product.price}</p>
       </div>
+      <button className="check-out" onClick={() => addToCart(product)}><span>Add to Cart</span></button>
     </div>
+  </div>
   );
 };
 
