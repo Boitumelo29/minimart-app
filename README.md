@@ -51,7 +51,7 @@ App will be live at [http://localhost:3000]
 
 ---
 
-## 🔌API Setup
+## API Setup
 
 In `/services/productService.js`:
 
