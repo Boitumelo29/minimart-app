@@ -11,13 +11,23 @@ const Navbar = () => {
   const { username, logout } = useContext(AuthContext);
   const [showPopup, setShowPopup] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, lastAddedItem } = useContext(CartContext);
   const totalItems = cartItems.reduce((a, b) => a + b.quantity, 0);
   const popupRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname.split('/').filter(Boolean).map(path => path.charAt(0).toUpperCase() + path.slice(1)).join('') || '';
+  const [showToast, setShowToast] = useState(false);
 
+
+  useEffect(() => {
+    if (lastAddedItem) {
+      setShowToast(true);
+      const timer = setTimeout(() => setShowToast(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [lastAddedItem]); 
+  
 
   const handleProducts = () => {
     navigate(`allProducts`);
@@ -45,6 +55,11 @@ const Navbar = () => {
 
             <span onClick={handleProducts}>View All Products </span>
 
+            {showToast && lastAddedItem && (
+              <div className="toast">
+                {lastAddedItem.title} added to cart!
+              </div>
+            )}
             <button onClick={() => setShowCart(!showCart)} className="icon-btn">
               <span className="material-icons">shopping_cart</span>
               {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
