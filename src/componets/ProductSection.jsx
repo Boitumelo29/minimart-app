@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import { fetchAllProducts } from "../services/productService";
 import '../styles/ProductSection.css';
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const ProductSection = () => {
+    const { addToCart } = useContext(CartContext);
     const [randomProducts, setRandomProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -45,7 +47,7 @@ const ProductSection = () => {
                                     <img onClick={() => handleDetails(product.id)} src={product.image} alt={product.title} />
                                     <h3 onClick={() => handleDetails(product.id)}>{product.title}</h3>
                                     <p>R{product.price}</p>
-                                    <button className="add-btn"> Add to Cart</button>
+                                    <button onClick={()=> addToCart(product)} className="add-btn"> Add to Cart</button>
                                 </div>
                             ))}
                         </div>
