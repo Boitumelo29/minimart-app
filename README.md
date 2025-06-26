@@ -22,7 +22,7 @@
 - **Context API** (Auth & Cart)
 - **LocalStorage** (Cart persistence)
 - **Custom REST API** or 
-- **Vanilla CSS** 
+- **CSS** 
 
 ---
 
