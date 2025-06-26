@@ -3,15 +3,15 @@ import '../styles/HomeTypingEffect.css';
 
 const HomeTypingEffect = () => {
   const typingRef = useRef(null);
-  const idxRef = useRef(1);
+  const indexRef = useRef(1);
   const prog = 'Easy.';
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (typingRef.current) {
-        typingRef.current.innerHTML = prog.slice(0, idxRef.current);
-        idxRef.current++;
-        if (idxRef.current > prog.length) idxRef.current = 1;
+        typingRef.current.innerHTML = prog.slice(0, indexRef.current);
+        indexRef.current++;
+        if (indexRef.current > prog.length) indexRef.current = 1;
       }
     }, 800);
 
