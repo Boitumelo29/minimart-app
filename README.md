@@ -46,6 +46,13 @@
 - styles/
     - refer to components
 ---
+## Development
+
+Clean Architecture
+Async/Await patterns
+Comprehensive error handling
+
+---
 
 ## Tech Stack
 
