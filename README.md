@@ -1,6 +1,11 @@
 # 🛍️ MiniMart
 
 **MiniMart** is a simple and modern e-commerce web app built with React. Users can browse products, add items to their cart, and proceed to checkout. The app supports both guest and authenticated user shopping, with cart persistence via local storage.
+## Project links:
+
+- MiniMart Store: https://minimartstore.netlify.app/
+- Github repo: https://github.com/Boitumelo29/minimart-app
+- Github cli: `gh repo clone Boitumelo29/minimart-app`
 
 ---
 
