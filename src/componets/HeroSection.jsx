@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import '../styles/HeroSection.css';
 import minimart from '../assets/minimart.png';
 import { useNavigate } from "react-router-dom";
