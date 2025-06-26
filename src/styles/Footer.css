@@ -1,0 +1,39 @@
+.footer {
+    background-color: #f9fafb;
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.footer-logo {
+    width: 80px;
+    height: auto;
+    margin-right: 12px;
+}
+
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.footer-text h2 {
+    margin: 0;
+}
+
+.footer-text p {
+    margin: 4px 0 0;
+    color: grey;
+}
+
+.footer-text span {
+    color: green;
+}
