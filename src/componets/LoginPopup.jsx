@@ -19,7 +19,7 @@ const LoginPopup = ({ close }) => {
         isLoginView ? await login(form.email, form.password) : await signUpUser(form.username,form.email, form.password);
         close();
       } catch (err) {
-        alert('Login failed');
+        isLoginView ?  alert('Login failed') : alert('signup failed');
       }
     };
   

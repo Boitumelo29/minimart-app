@@ -1,9 +1,9 @@
 .checkout-container {
-    display: flex;
-    gap: 30px;
-    padding: 40px;
-  }
-  
+  display: flex;
+  gap: 30px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
   .checkout-form, .checkout-summary {
     flex: 1;
     background: #fff;
@@ -112,3 +112,34 @@
     opacity: 1;
     right: 0;
   }
+
+  @media (max-width: 768px) {
+    .checkout-container {
+      flex-direction: column;
+      padding: 20px;
+      gap: 20px;
+    }
+  
+    .checkout-form,
+    .checkout-summary {
+      width: 100%;
+      padding: 15px;
+    }
+  
+    .shipping-form .row {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .card-form .row {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .check-out {
+      width: 100%;
+      font-size: 16px;
+      padding: 12px;
+    }
+  }
+  

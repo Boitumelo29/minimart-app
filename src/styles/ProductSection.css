@@ -30,11 +30,13 @@
     height: auto;
     border-radius: 6px;
     margin-bottom: 10px;
+    cursor: pointer;
   }
   
   .product-card h3 {
     font-size: 20px;
     margin: 10px 0 5px;
+    cursor: pointer;
   }
   
   .product-card p {

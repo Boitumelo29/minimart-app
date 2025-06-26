@@ -18,6 +18,8 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname.split('/').filter(Boolean).map(path => path.charAt(0).toUpperCase() + path.slice(1)).join('') || '';
   const [showToast, setShowToast] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 
 
   useEffect(() => {
@@ -26,11 +28,16 @@ const Navbar = () => {
       const timer = setTimeout(() => setShowToast(false), 3000);
       return () => clearTimeout(timer);
     }
-  }, [lastAddedItem]); 
-  
+  }, [lastAddedItem]);
+
 
   const handleProducts = () => {
     navigate(`allProducts`);
+  };
+
+  const handleHome = () =>{
+    navigate(`/`);
+
   };
 
   useEffect(() => {
@@ -48,23 +55,25 @@ const Navbar = () => {
       <nav className="navbar">
         <div className="navbar-container">
           <div className="logo-section">
-            <img className="logo-img" src={minimart} alt="minmart logo" />
+            <img onClick={handleHome} className="logo-img" src={minimart} alt="minmart logo" />
             <h1> MINIMART</h1>
           </div>
           <div className="actions">
-
-            <span onClick={handleProducts}>View All Products </span>
+            <span className="view-all" onClick={handleProducts}>View All Products</span>
 
             {showToast && lastAddedItem && (
               <div className="toast">
                 {lastAddedItem.title} added to cart!
               </div>
             )}
+
             <button onClick={() => setShowCart(!showCart)} className="icon-btn">
               <span className="material-icons">shopping_cart</span>
               {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
             </button>
+
             {showCart && <CartPopup close={() => setShowCart(false)} />}
+
             {username ? (
               <div className="user-info">
                 <span>Welcome, {username}</span>
@@ -80,14 +89,49 @@ const Navbar = () => {
                 {showPopup && <LoginPopup close={() => setShowPopup(false)} />}
               </div>
             )}
-
-            <button className="icon-btn mobile-menu">
-              <span className="material-icons">menu</span>
-            </button>
           </div>
-        </div>
-      </nav>
 
+
+          <button className="icon-btn mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <span className="material-icons">menu</span>
+          </button>
+        </div>
+
+        {isMobileMenuOpen && (
+          <div className="mobile-dropdown" ref={popupRef}>
+            <button onClick={handleProducts}>View All Products</button>
+            {totalItems > 0 ? (
+              <button
+                onClick={() => navigate("/checkout")}
+                className="icon-btn checkout-cart-btn">
+                <span className="material-icons">shopping_cart</span>
+                <span className="cart-label">Checkout ({totalItems})</span>
+              </button>
+            ) : (
+              <button
+                onClick={() => setShowCart(!showCart)}
+                className="icon-btn"
+              >
+                <span className="material-icons">shopping_cart</span>
+              </button>
+            )}
+
+            {username ? (
+              <button onClick={logout} className="icon-btn">
+                <span className="material-icons">logout</span> Logout
+              </button>
+            ) : (
+              <>
+                <button onClick={() => setShowPopup(!showPopup)} className="icon-btn">
+                  <span className="material-icons">person</span> Login
+                </button>
+                {showPopup && <LoginPopup close={() => setShowPopup(false)} />}
+              </>
+            )}
+          </div>
+        )}
+
+      </nav>
       <div className="breadcrumb">
         <span onClick={() => navigate("/")}>Home</span>
         <span>/</span>
