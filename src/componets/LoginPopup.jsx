@@ -28,10 +28,26 @@ const LoginPopup = ({ close }) => {
          <button className="close-btn" onClick={close}>X</button>
         <h1>{isLoginView ? 'Login' :'Sign Up'}</h1>
         <form onSubmit={handleSubmit}>
-
-        { !isLoginView &&(  <input name="username" placeholder="Username" onChange={handleChange} value={form.username}/>)}
-          <input name="email" placeholder="Email" onChange={handleChange} value={form.email}/>
-          <input name="password"  value={form.password} type="password" placeholder="Password" onChange={handleChange} />
+        { !isLoginView &&( 
+          <input name="username" 
+          placeholder="Username*" 
+          required 
+          onChange={handleChange} 
+          value={form.username}/>)}
+          <input
+            name="email"
+            type="email"
+            placeholder="Email*"
+            onChange={handleChange}
+            required
+            value={form.email}
+          />
+          <input name="password"
+          value={form.password} 
+          type="password" 
+          placeholder="Password*" 
+          required
+           onChange={handleChange} />
           <button className="auth-btn" type="submit">{isLoginView ? 'Login' :'Sign Up'}</button>
         </form>
         <div className="auth-toggle">
