@@ -40,6 +40,14 @@ const Navbar = () => {
 
   };
 
+  const handleCheckout = () => {
+    if (username) {
+      navigate("/checkout");
+    } else {
+      alert("Please log in or signup to checkout.");
+    }
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (popupRef.current && !popupRef.current.contains(event.target)) {
@@ -52,6 +60,11 @@ const Navbar = () => {
 
   return (
     <div className="navbar-wrapper">
+      {showToast && lastAddedItem && (
+        <div className="toast">
+          {lastAddedItem.title} added to cart!
+        </div>
+      )}
       <nav className="navbar">
         <div className="navbar-container">
           <div className="logo-section">
@@ -60,12 +73,6 @@ const Navbar = () => {
           </div>
           <div className="actions">
             <span className="view-all" onClick={handleProducts}>View All Products</span>
-
-            {showToast && lastAddedItem && (
-              <div className="toast">
-                {lastAddedItem.title} added to cart!
-              </div>
-            )}
 
             <button onClick={() => setShowCart(!showCart)} className="icon-btn">
               <span className="material-icons">shopping_cart</span>
@@ -102,7 +109,7 @@ const Navbar = () => {
             <button onClick={handleProducts}>View All Products</button>
             {totalItems > 0 ? (
               <button
-                onClick={() => navigate("/checkout")}
+                onClick={handleCheckout}
                 className="icon-btn checkout-cart-btn">
                 <span className="material-icons">shopping_cart</span>
                 <span className="cart-label">Checkout ({totalItems})</span>
@@ -110,9 +117,8 @@ const Navbar = () => {
             ) : (
               <button
                 onClick={() => setShowCart(!showCart)}
-                className="icon-btn"
-              >
-                <span className="material-icons">shopping_cart</span>
+                className="icon-btn" >
+                {totalItems}<span className="material-icons">shopping_cart</span>
               </button>
             )}
 

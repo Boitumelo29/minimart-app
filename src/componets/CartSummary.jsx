@@ -3,7 +3,7 @@ import { CartContext } from "../context/CartContext";
 import { useNavigate } from 'react-router-dom';
 
 const CartSummary = ({ isFormComplete, setFormData, }) => {
-  const { cartItems, clearCart } = useContext(CartContext);
+  const { cartItems, clearCart, removeFromCart } = useContext(CartContext);
   const [paymentSuccess, setPaymentSuccess] = useState(false);
 
   const subtotal = cartItems.reduce((a, b) => a + b.price * b.quantity, 0);
@@ -45,13 +45,16 @@ const CartSummary = ({ isFormComplete, setFormData, }) => {
       <h3>Your Cart</h3>
       <ul className="cart-items">
         {cartItems.map((item, idx) => (
-          <li key={idx}>
+          <li key={idx} className="cart-item">
             <img src={item.image} alt={item.title} />
             <div>
               <p>{item.title}</p>
               <p>Qty: {item.quantity}</p>
               <p>R{(item.price * item.quantity)}</p>
             </div>
+            <button className="remove-btn" onClick={() => removeFromCart(item.id)}>
+              <span className="material-icons">delete</span>
+            </button>
           </li>
         ))}
       </ul>
