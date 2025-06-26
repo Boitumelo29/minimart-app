@@ -1,6 +1,5 @@
 .navbar-wrapper {
   width: 100%;
-  font-family: sans-serif;
   flex-wrap: wrap;
 }
 
@@ -9,6 +8,7 @@
   border-bottom: 1px solid #ddd;
   padding: 10px;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .navbar-container {
@@ -22,20 +22,13 @@
 .logo-img{
   width: 80px;
   height: 80px;
+  cursor: pointer;
 }
-
 
 .logo-section {
   display: flex;
   align-items: center;
 }
-
-.logo-text {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-
 
 .actions {
   display: flex;
@@ -65,18 +58,6 @@
   align-items: center;
 }
 
-.popup-header button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: #888;
-}
-
-.mobile-menu {
-  display: none;
-}
-
 .breadcrumb {
   background-color: #f9fafb;
   padding: 12px 24px;
@@ -98,13 +79,46 @@
   font-size: 10px;
 }
 
+.view-all {
+  cursor: pointer;
+}
+
+.mobile-menu-btn {
+  display: none;
+}
+
+.mobile-dropdown {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
-  .nav-links {
+  .actions {
     display: none;
   }
 
-  .mobile-menu {
+  .mobile-menu-btn {
     display: block;
+  }
+
+  .mobile-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    padding: 10px;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+
+  .mobile-dropdown button {
+    padding: 8px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
   }
 }
