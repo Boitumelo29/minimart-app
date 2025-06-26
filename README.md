@@ -14,6 +14,38 @@
 
 
 ---
+## Project Structure
+- assets/
+- components/
+    - CartPopup
+    - CartSummary
+    - Footer
+    - HeroSection
+    - HeroSection
+    - LoginPopup
+    - Navbar
+    - ProductCard
+    - ProductList
+    - ProductSection
+    - ShippingForm
+- context/
+    - AuthContext
+    - CartContext
+- layout/
+- lib/
+- pages
+    - AllProducts
+    - AllProducts
+    - Home
+    - ProductDetails
+- routes/
+- services/
+    - authService
+    - cartService
+    - productService
+- styles/
+    - refer to components
+---
 
 ## Tech Stack
 
